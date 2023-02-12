@@ -20,7 +20,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests()
-                .requestMatchers("/**").authenticated()
+                .requestMatchers("/").authenticated()
                 .and()
                 .formLogin();
 
@@ -32,7 +32,7 @@ public class SecurityConfiguration {
         return new InMemoryUserDetailsManager(
                 User
                         .withUsername("user")
-                        .password(passwordEncoder.encode("password"))
+                        .password(passwordEncoder().encode("password"))
                         .roles("USER")
                         .build());
     }
